@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    kotlin("jvm") version "1.9.0"
     id("application")
     id("org.graalvm.buildtools.native") version "0.9.28"
 }
@@ -12,28 +11,20 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
 tasks.test {
     useJUnitPlatform()
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
+        languageVersion = JavaLanguageVersion.of(21)
         vendor = JvmVendorSpec.GRAAL_VM
         implementation = JvmImplementation.VENDOR_SPECIFIC
     }
 }
 
-kotlin {
-    jvmToolchain(17)
-}
-
 application {
-    mainClass = "de.gmasil.example.AppKt"
+    mainClass = "de.gmasil.example.App"
 }
 
 tasks.jar {
